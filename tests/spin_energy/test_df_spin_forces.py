@@ -1,5 +1,7 @@
 """Same-root derivative, training, and public workflow checks for DF spin models."""
 
+from unittest.mock import patch
+
 import numpy as np
 import pytest
 import torch
@@ -280,3 +282,39 @@ def test_one_shot_force_workflows_validate_the_fock_once(monkeypatch):
     checked.clear()
     evaluate_molecule(ref.mol, model, family="rhf", density_fit=True)
     assert len(checked) == 1
+
+
+@pytest.mark.parametrize("charge", [0, 1], ids=["rhf", "uhf"])
+@pytest.mark.parametrize("backend", ["direct", "zvector"])
+def test_joint_spin_evaluation_reuses_features_and_forward(charge, backend, monkeypatch):
+    from deepks.deephf import workflow
+    from deepks.descriptor import AtomicDensityDescriptor
+
+    ref = reference(charge)
+    model = spin_model(True)
+    method = make_deephf(ref, model)
+    expected_energy = model.correction_energy(ref)  # Includes nonzero H/O offsets.
+    expected_features = method.descriptor()
+    expected_gradient = method.gradient(backend=backend)
+    # Fix the SCF root so that this comparison isolates the inference step.
+    monkeypatch.setattr(workflow, "build_spin_reference", lambda *args, **kwargs: ref)
+    with (
+        patch.object(AtomicDensityDescriptor, "__init__", autospec=True,
+                     side_effect=AtomicDensityDescriptor.__init__) as construct,
+        patch.object(AtomicDensityDescriptor, "spin_features", autospec=True,
+                     side_effect=AtomicDensityDescriptor.spin_features) as build_features,
+        patch.object(model, "forward", wraps=model.forward) as forward,
+        torch.no_grad(),
+    ):
+        result = workflow.evaluate_molecule(
+            ref.mol, model, family="uhf" if charge else "rhf", density_fit=True, backend=backend,
+        )
+    construct.assert_called_once()
+    build_features.assert_called_once()
+    forward.assert_called_once()
+    np.testing.assert_allclose(result["e_corr"], expected_energy, rtol=0, atol=1e-13)
+    np.testing.assert_allclose(result["e_tot"], ref.e_tot + expected_energy, rtol=0, atol=1e-13)
+    # The differentiable eigenvalue path can differ by FP64 roundoff.
+    np.testing.assert_allclose(result["descriptor"], expected_features, rtol=0, atol=1e-13)
+    np.testing.assert_allclose(result["gradient"], expected_gradient, rtol=0, atol=1e-11)
+    np.testing.assert_array_equal(result["force"], -result["gradient"])

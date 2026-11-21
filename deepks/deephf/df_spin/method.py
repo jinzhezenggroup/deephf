@@ -90,9 +90,14 @@ class SpinForceFrame:
     hf_force: torch.Tensor
     projector_basis: list
 
-    @torch.enable_grad()
     def forces(self, model, *, create_graph=False):
         """Contract the relaxed Jacobian with optional weight gradients for fitting."""
+        _, forces = self._energy_and_forces(model, create_graph=create_graph)
+        return forces
+
+    @torch.enable_grad()
+    def _energy_and_forces(self, model, *, create_graph=False):
+        """Use the network energy and its slope from the same forward pass."""
         _validate_local_model(model)
         if self.projector_basis != model.network._pbas:
             raise ValueError("projector basis differs from the force frame")
@@ -102,7 +107,7 @@ class SpinForceFrame:
         result = self.hf_force.to(x) - torch.einsum("rxaf,af->rx", self.jacobian.to(x), slope)
         if not torch.isfinite(result).all():
             raise ValueError("nonfinite DF-HF/model force")
-        return result
+        return energy, result
 
 
 class DFSpinDeePHF:
@@ -142,13 +147,21 @@ class DFSpinDeePHF:
         """Return the total energy gradient in Hartree/Bohr on the current root."""
         _validate_local_model(self.model)
         _validate_reference(self.reference)
-        return self._gradient_on_validated_root(backend)
+        _, _, gradient = self._evaluate_on_validated_root(backend)
+        return gradient
 
     @torch.enable_grad()
-    def _gradient_on_validated_root(self, backend):
-        """Evaluate immediately after construction or validation of the current root."""
+    def _evaluate_on_validated_root(self, backend):
+        """Return the network energy before elemental offsets, raw features and gradient.
+
+        Use the same features and forward pass for all three outputs. The direct
+        backend differentiates with respect to features, the adjoint with respect
+        to the density and projector overlaps that produced them.
+        """
         if backend == "direct":
-            return -self._force_frame_on_validated_root().forces(self.model).detach().cpu().numpy()
+            frame = self._force_frame_on_validated_root()
+            energy, forces = frame._energy_and_forces(self.model)
+            return energy.detach(), frame.features.detach(), -forces.detach().cpu().numpy()
         if backend not in ("zvector", "generativeqc-zvector"):
             raise ValueError(f"unknown spin gradient backend: {backend}")
         ref = self.reference
@@ -175,7 +188,7 @@ class DFSpinDeePHF:
             gradient = _hf_gradient(ref) + explicit + self._orbital_gradient(potential, orbital)
         if not np.isfinite(gradient).all():
             raise ValueError("nonfinite DF-HF/model gradient")
-        return gradient
+        return energy.detach(), features.detach(), gradient
 
     def _orbital_gradient(self, potential, orbital):
         """Contract the relaxed density motion, including its AO-metric gauge."""

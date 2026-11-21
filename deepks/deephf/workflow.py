@@ -392,17 +392,19 @@ def _evaluate_reference(
     if energy_only and model is None and not is_gpu_reference(reference):
         return _state_energies(reference.e_tot, 0.0)
     if isinstance(model, SpinCorrNet):
-        _check_spin_projector(model, projector_basis)
-        model.to("cpu" if device is None else device).eval()
-        correction = model.correction_energy(reference)
+        model.eval()
+        if energy_only:
+            _check_spin_projector(model, projector_basis)
+            model.to("cpu" if device is None else device)
+            return _state_energies(reference.e_tot, model.correction_energy(reference))
+        method = make_deephf(
+            reference, model, projector_basis=projector_basis, device=device,
+            response_options=response_options, adjoint_options=adjoint_options,
+        )
+        energy, features, gradient = method._evaluate_on_validated_root(backend)
+        correction = model.correction_with_offsets(reference.mol, energy)
         result = _state_energies(reference.e_tot, correction)
-        if not energy_only:
-            method = make_deephf(
-                reference, model, device=device, response_options=response_options,
-                adjoint_options=adjoint_options,
-            )
-            gradient = method._gradient_on_validated_root(backend)
-            result.update(descriptor=method.descriptor(), gradient=gradient, force=-gradient)
+        result.update(descriptor=features.numpy(), gradient=gradient, force=-gradient)
         return result
     method = make_deephf(
         reference,

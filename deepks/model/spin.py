@@ -5,7 +5,7 @@ import math
 import torch
 from pyscf import scf
 
-from deepks.descriptor import AtomicDensityDescriptor
+from deepks.descriptor import AtomicDensityDescriptor, descriptor_atom_indices
 from deepks.model.model import CorrNet
 from deepks.utils import get_shell_sec, load_basis
 
@@ -171,12 +171,13 @@ class SpinCorrNet(torch.nn.Module):
         if self.relative_cutoff_angstrom is not None:
             xyz = descriptor.mol.atom_coords(unit="Angstrom")
             positions = torch.as_tensor(xyz[list(descriptor.descriptor_atom_indices)])
-        correction = self(features.to(self.network.input_shift), positions).item()
-        elements = [
-            int(descriptor.mol.atom_charge(i))
-            for i in descriptor.descriptor_atom_indices
-        ]
-        correction += self.network.get_elem_const(elements)
+        energy = self(features.to(self.network.input_shift), positions)
+        return self.correction_with_offsets(descriptor.mol, energy)
+
+    def correction_with_offsets(self, molecule, energy):
+        """Include the elemental baselines after a single-state network evaluation."""
+        elements = [int(molecule.atom_charge(i)) for i in descriptor_atom_indices(molecule)]
+        correction = energy.item() + self.network.get_elem_const(elements)
         if not math.isfinite(correction):
             raise ValueError("single-state energy correction must be finite")
         return float(correction)
