@@ -88,7 +88,10 @@ def overlaps(left, right):
 
 @contextmanager
 def cycle_counter(engine):
-    """Observe the real solver before external-HF transport discards its iteration count."""
+    """Observe the real solver before external-HF transport discards its iteration count.
+
+    For GenerativeQC this instruments seeded PreparedBatch.execute calls only.
+    """
     audit = {}
     if engine == "generativeqc":
         from generativeqc.batch import PreparedBatch
@@ -174,8 +177,10 @@ def compare(left, right):
             "max_abs_delta_force_Eh_per_bohr": float(np.max(np.abs(right[1]["force"] - left[1]["force"])))}
 
 
-def replay(symbols, frames, model, engine, device, controls, reverse):
+def replay(symbols, frames, model, engine, device, controls, reverse, gqc_controls=None):
     """Start every path at the same checked PySCF root. Interleave strategies at each geometry."""
+    if gqc_controls is None:
+        gqc_controls = {"conv_tol": 1e-12, "max_cycle": controls["max_cycle"], "density_tolerance": 1e-10}
     first, root = step(symbols, frames[0], None, None, "independent", "pyscf", controls, model, "cpu")
     run = {"first_pyscf_frame": first, "warm_frames": []}
     if first["status"] != "accepted":
@@ -183,7 +188,7 @@ def replay(symbols, frames, model, engine, device, controls, reverse):
     paths = {"raw": (engine, device, "dm0"), "projected": (engine, device, "initial_reference")}
     initial = root
     if engine != "pyscf":
-        settings = GQC_CONTROLS if engine == "generativeqc" else controls
+        settings = gqc_controls if engine == "generativeqc" else controls
         external, initial = step(symbols, frames[0], root[0], 0, "initial_reference", engine,
                                  settings, model, device)
         pair = compare(root, initial)
@@ -204,7 +209,7 @@ def replay(symbols, frames, model, engine, device, controls, reverse):
         for key in (reversed(paths) if reverse else paths):
             solver, target, guess = paths[key]
             parent_index, parent = anchors[key]
-            settings = GQC_CONTROLS if solver == "generativeqc" else controls
+            settings = gqc_controls if solver == "generativeqc" else controls
             details[key], candidates[key] = step(symbols, frame, parent, parent_index, guess, solver,
                                                   settings, model, target)
             if details[key]["status"] == "accepted":
@@ -213,9 +218,6 @@ def replay(symbols, frames, model, engine, device, controls, reverse):
         run["warm_frames"].append({"line": frame["line"], "paths": details,
                                    "right_minus_left": compare(candidates[left], candidates[right])})
     return run
-
-
-GQC_CONTROLS = {"conv_tol": 1e-12, "max_cycle": 300, "density_tolerance": 1e-10}
 
 
 def main():
@@ -238,6 +240,7 @@ def main():
         parser.error(f"{args.engine} does not support scf_device={device}")
     if Path(workflow.__file__).resolve().parents[2] != REPO:
         raise RuntimeError("import DeePHF from the checkout containing this driver")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     lib.num_threads(args.threads)
     torch.set_num_threads(args.threads)
     torch.set_num_interop_threads(1)
@@ -245,6 +248,7 @@ def main():
     model = SpinCorrNet.load(MODEL).double().eval()
     controls = dict(conv_tol=1e-12, conv_tol_grad=args.conv_tol_grad, conv_tol_cpscf=1e-12,
                     max_cycle=args.max_cycle, diis_space=args.diis_space)
+    gqc_controls = {"conv_tol": 1e-12, "max_cycle": args.max_cycle, "density_tolerance": 1e-10}
     processor = platform.processor()
     if platform.system() == "Darwin":
         processor = subprocess.check_output(["sysctl", "-n", "machdep.cpu.brand_string"], text=True).strip()
@@ -273,14 +277,16 @@ def main():
         report["versions"]["generativeqc"] = generativeqc.__version__
         native = load_library(device=device)
         report["native_source_identity"] = native.generativeqc_get_source_identity().decode()
-        report["native_scf_controls"] = GQC_CONTROLS
+        report["native_scf_controls"] = gqc_controls
     if device == "cuda":
         report["cuda_device"] = torch.cuda.get_device_name()
         if args.engine == "gpu4pyscf":
             import gpu4pyscf
             report["versions"]["gpu4pyscf"] = gpu4pyscf.__version__
     for repeat in range(args.repeats):
-        report["runs"].append(replay(symbols, frames, model, args.engine, device, controls, bool(repeat % 2)))
+        report["runs"].append(
+            replay(symbols, frames, model, args.engine, device, controls, bool(repeat % 2), gqc_controls)
+        )
     report["finished_utc"] = datetime.now(timezone.utc).isoformat()
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(args.output)

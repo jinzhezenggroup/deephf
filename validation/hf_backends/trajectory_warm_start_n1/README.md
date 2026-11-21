@@ -77,25 +77,30 @@ for one CPU thread. For each CUDA result the selected external engine ran
 SCF on the GPU, and DeePHF evaluated the frozen spin model and Z-vector
 response on the CPU. The recorded whole-step times apply to that configuration.
 
-The [submitted script](run.sbatch) uses the project's existing Linux
-environment and native-library paths. The [benchmark](../trajectory_warm_start.py)
-is the only untracked code over source revision
-`bfb94e18b2c35867454665d49ed08846769c532c` in the isolated server checkout.
-The server driver adds Slurm provenance and reads the version and native
-source identity from imported GenerativeQC bindings, supporting source-tree
-installs. The earlier macOS driver hash predates those metadata additions.
-The SCF, force and comparison code used for the measurements is identical.
+The [submitted script](run.sbatch) and [CPU control script](native-cpu.sbatch)
+parameterize the checkout (`CODE_DIR`, default `$SLURM_SUBMIT_DIR/code`),
+Python interpreter (`PYTHON_BIN`, default `python`), required geometry archive
+(`ARCHIVE`), and optional `GENERATIVEQC_ROOT`, `CUDA_PATH`, and
+`EXTRA_LD_LIBRARY_PATH` environment variables. The
+[benchmark](../trajectory_warm_start.py) was the only untracked code over
+source revision `bfb94e18b2c35867454665d49ed08846769c532c` in the isolated
+server checkout. The server driver added Slurm provenance and read the version
+and native source identity from imported GenerativeQC bindings, supporting
+source-tree installs. A subsequent cleanup wired `--max-cycle` into
+GenerativeQC controls and created `--output`'s parent directory automatically,
+so the committed `driver_sha256` is newer than the archived JSON runs while
+the SCF, force and comparison logic used for the measurements is unchanged.
 The Linux driver queries the native library identity before the first
-GenerativeQC step. Full machine
-records include the commit, driver, checkpoint and trajectory hashes,
-versions, selected SCF device and response device. The server workspace was
-`n1:/data/chuang/deephf-warm-replay-IqraVs/`, with layout `code/` and
-`results-<job ID>/` under the submission directory.
+GenerativeQC step. Full machine records include the commit, driver, checkpoint
+and trajectory hashes, versions, selected SCF device and response device.
 
-From that server directory, `sbatch run.sbatch` repeats the paired
-experiments and tests, and `sbatch native-cpu.sbatch` repeats the single
-native CPU control. Each job writes a fresh directory named by its Slurm
-job ID. A nonzero continuation status preserves the per-frame diagnostics.
+From a submission directory containing `code/`, run
+`ARCHIVE=/path/to/qm9_ie_geometry_opt sbatch run.sbatch` (along with any
+site-specific `PYTHON_BIN`, `GENERATIVEQC_ROOT`, `CUDA_PATH`, or
+`EXTRA_LD_LIBRARY_PATH`) to repeat the paired experiments and tests, and
+`ARCHIVE=/path/to/qm9_ie_geometry_opt sbatch native-cpu.sbatch` to repeat the
+single native CPU control. Each job writes a fresh `results-<job ID>/`
+directory. A nonzero continuation status preserves the per-frame diagnostics.
 
 ## Verification
 

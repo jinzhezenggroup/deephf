@@ -62,7 +62,7 @@ The [node1 GPU and CPU replay](trajectory_warm_start_n1/README.md) uses the same
 
 ## Measured workstation PySCF results
 
-Apple M4 CPU, one thread, PySCF 2.14.0 and Torch 2.13.0. The running checkout was `bfb94e18b2c35867454665d49ed08846769c532c`. Its only tracked change from the common starting commit `7f7b282ed145e3c0f8b3d2092a61a6dd24e88bff` was in the top-level README. The paired measurements ran sequentially with the local GenerativeQC compilation suspended. A process check sampled once per second observed no concurrent companion force-profile run.
+Apple M4 CPU, one thread, PySCF 2.14.0 and Torch 2.13.0. The running checkout was `bfb94e18b2c35867454665d49ed08846769c532c`. Its only tracked change from the common starting commit `7f7b282ed145e3c0f8b3d2092a61a6dd24e88bff` was in the top-level README. The archived macOS JSON records predate later metadata and CLI cleanups in `trajectory_warm_start.py` (so their `driver_sha256` differs from the committed script), while the SCF, force and comparison logic is identical. The paired measurements ran sequentially with the local GenerativeQC compilation suspended. A process check sampled once per second observed no concurrent companion force-profile run.
 
 Acetonitrile took 154 SCF cycles over three warm steps with raw density and 197 with projection. Projection saved four cycles on the first displacement and added 32 and 15 cycles on the next two. Median three-step times were 1.657 and 1.871 s, respectively (+12.9%). The pyridine comparison took 154 and 150 cycles and 10.494 and 10.421 s (−0.7%). With two pyridine repeats, the small time difference is below the between-repeat spread.
 

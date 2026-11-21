@@ -67,9 +67,10 @@ included density export, projection and CPU model evaluation.
 At 96 AOs, 16-thread PySCF gave the shortest elapsed time. At 192 AOs,
 GPU4PySCF was 1.34 times as fast as 16-thread PySCF. For one water, the
 first calls in the new processes took 0.049 s (single-thread PySCF),
-2.047 s (GPU4PySCF) and 1.734 s (GenerativeQC). Timings for analytic
-forces and geometry optimization with a previous density as the SCF guess
-require separate measurements.
+2.047 s (GPU4PySCF) and 1.734 s (GenerativeQC). For analytic-force and
+warm-start trajectory comparisons using a previous density or projected
+reference, see the [trajectory warm-start study](trajectory_warm_start.md) and
+the [node1 GPU and CPU replay](trajectory_warm_start_n1/README.md).
 
 ```bash
 for threads in 1 8 16; do

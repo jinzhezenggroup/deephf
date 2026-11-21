@@ -8,19 +8,24 @@
 #SBATCH --output=slurm-%j.log
 set -euo pipefail
 root=$SLURM_SUBMIT_DIR
-cd "$root/code"
-py=/data/chuang/deephf-pr2-0BOVFV/.venv/bin/python
-native=/tmp/gqc-shared-anchor-4a36-20261113
-site=/data/chuang/deephf-pr2-0BOVFV/.venv/lib/python3.11/site-packages
-export PYTHONPATH="$PWD:$native/python:$native/testdeps"
+cd "${CODE_DIR:-$root/code}"
+py="${PYTHON_BIN:-python}"
+archive="${ARCHIVE:?set ARCHIVE to the qm9_ie_geometry_opt archive root}"
+export PYTHONPATH="$PWD${GENERATIVEQC_ROOT:+:$GENERATIVEQC_ROOT/python:$GENERATIVEQC_ROOT/testdeps}${PYTHONPATH:+:$PYTHONPATH}"
 export PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
-export GENERATIVEQC_LIBRARY="$native/native/libgenerativeqc.so"
-export CUDA_PATH=/group/software/cuda-12.9.1
-export LD_LIBRARY_PATH="/data/chuang/deephf-multihf-eYkohm/extra/scipy_openblas32/lib:$CUDA_PATH/lib64:$site/gpu4pyscf_cuda12x.libs:${LD_LIBRARY_PATH:-}"
+if [[ -n "${GENERATIVEQC_ROOT:-}" && -z "${GENERATIVEQC_LIBRARY:-}" ]]; then
+    export GENERATIVEQC_LIBRARY="$GENERATIVEQC_ROOT/native/libgenerativeqc.so"
+fi
+ld_prefix="${EXTRA_LD_LIBRARY_PATH:-}"
+if [[ -n "${CUDA_PATH:-}" ]]; then
+    ld_prefix="${ld_prefix:+$ld_prefix:}$CUDA_PATH/lib64"
+fi
+if [[ -n "$ld_prefix" ]]; then
+    export LD_LIBRARY_PATH="$ld_prefix${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+fi
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
 dest="$root/results-$SLURM_JOB_ID"
-mkdir "$dest"
-archive=/data/chuang/qm9_ie_geometry_opt_20261120
+mkdir -p "$dest"
 task=validation.hf_backends.trajectory_warm_start
 hostname
 lscpu | grep -E '^Model name:'
