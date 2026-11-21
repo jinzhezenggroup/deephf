@@ -1,0 +1,1052 @@
+{
+  "case": "acetonitrile",
+  "commit": "bfb94e18b2c35867454665d49ed08846769c532c",
+  "driver_sha256": "1f24fc44875c005972f306918731ac195b2d91762f98f83838d20422b51b1fa2",
+  "checkpoint": "tests/spin_energy/data/qm9_methanol/joint_B.pth",
+  "checkpoint_sha256": "64f432a37ec324aebe2ee2103b1cddbe7bc2fff21e003e257264a6ae80833e39",
+  "archive": {
+    "trajectory": "runs/mol_000007/B/trajectory.jsonl",
+    "sha256": "c5a2ffbf4e016c267a6dc5aa1f1a9259f46f861a564eddf7e1e936d8cee14525",
+    "atom_order_source": "initial/mol_000007.xyz",
+    "xyz_sha256": "52e6835e900fd1c36a262f215c45ebb912a34c21874744f942bf96e0ccf0df0e",
+    "atom_order": [
+      "C",
+      "C",
+      "N",
+      "H",
+      "H",
+      "H"
+    ],
+    "unit": "Angstrom",
+    "skipped_archive_trials": [
+      {
+        "line": 37,
+        "step": 1,
+        "attempt": 0,
+        "reason": "root_discontinuity"
+      },
+      {
+        "line": 38,
+        "step": 1,
+        "attempt": 1,
+        "reason": "energy_line_search"
+      },
+      {
+        "line": 40,
+        "step": 2,
+        "attempt": 0,
+        "reason": "energy_line_search"
+      }
+    ]
+  },
+  "frames": [
+    {
+      "event": "initial",
+      "xyz": [
+        [
+          -0.49383514532020906,
+          -0.001943666721524541,
+          0.0023097693875349574
+        ],
+        [
+          0.9620855993219419,
+          0.003620038776760801,
+          -0.00045816488168417814
+        ],
+        [
+          2.1107736760898623,
+          0.007849007232348128,
+          -0.0015655255558374597
+        ],
+        [
+          -0.8537682207687471,
+          -0.6461312376158597,
+          -0.7974796063998296
+        ],
+        [
+          -0.862727290139936,
+          -0.3724241473778315,
+          0.9566550981980414
+        ],
+        [
+          -0.8625286191820731,
+          1.0090300058058448,
+          -0.15946157064827554
+        ]
+      ],
+      "HF_Eh": -131.41698640917417,
+      "S2": 0.7569407276804903,
+      "line": 35
+    },
+    {
+      "event": "accepted",
+      "step": 0,
+      "attempt": 0,
+      "stage": "cation_seed",
+      "xyz": [
+        [
+          -0.4920985856100238,
+          0.0009045890035343904,
+          0.004404869913747676
+        ],
+        [
+          0.9551909689752457,
+          0.007733063673262288,
+          0.001363707613186612
+        ],
+        [
+          2.105124987147126,
+          0.005376865295905235,
+          -0.00444278443874538
+        ],
+        [
+          -0.8429547143203933,
+          -0.6508986989572187,
+          -0.7995627268116289
+        ],
+        [
+          -0.8601571556869636,
+          -0.3763966875619267,
+          0.9565198752381069
+        ],
+        [
+          -0.865105500504152,
+          1.0132808686461816,
+          -0.15828294141471727
+        ]
+      ],
+      "step_A": 0.011999999999999959,
+      "HF_Eh": -131.41757382103643,
+      "S2": 0.7572646810342185,
+      "line": 36
+    },
+    {
+      "event": "accepted",
+      "step": 1,
+      "attempt": 2,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.48761413657082503,
+          0.003994887996484036,
+          0.007349340775057043
+        ],
+        [
+          0.9301955636291662,
+          0.007275956574042627,
+          0.00121960804682906
+        ],
+        [
+          2.125369274504715,
+          0.00536367505314735,
+          -0.004626182043274154
+        ],
+        [
+          -0.8431813505669814,
+          -0.6521724633652994,
+          -0.801217778710811
+        ],
+        [
+          -0.8599250381988417,
+          -0.3781786350331775,
+          0.9571279794680947
+        ],
+        [
+          -0.8648443127964052,
+          1.0137165788745417,
+          -0.15985296743594435
+        ]
+      ],
+      "step_A": 0.02499999999999999,
+      "HF_Eh": -131.42115716387204,
+      "S2": 0.7704607795185758,
+      "line": 39
+    },
+    {
+      "event": "accepted",
+      "step": 2,
+      "attempt": 1,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.47623659082206704,
+          0.03518275177534268,
+          0.02913476102078937
+        ],
+        [
+          0.9289205360287799,
+          0.002522731081451916,
+          0.0002396521343539799
+        ],
+        [
+          2.1093279168175982,
+          0.005367039922549474,
+          -0.005676307744239445
+        ],
+        [
+          -0.8439234723607077,
+          -0.6624789727142476,
+          -0.811759614663592
+        ],
+        [
+          -0.8568405245539175,
+          -0.39975884478492446,
+          0.9647825371569292
+        ],
+        [
+          -0.8612478651089615,
+          1.0191652948195735,
+          -0.17672102780433335
+        ]
+      ],
+      "step_A": 0.039708134300630235,
+      "HF_Eh": -131.41945535622227,
+      "S2": 0.7673596862375298,
+      "line": 41
+    }
+  ],
+  "reference": "DF-UHF/def2-SVP, spherical, q=1, spin=1",
+  "jk_auxbasis": "def2-svp-jkfit",
+  "engine": "gpu4pyscf",
+  "scf_device": "cuda",
+  "response_backend": "zvector",
+  "model_and_response_device": "cpu",
+  "scf_controls": {
+    "conv_tol": 1e-12,
+    "conv_tol_grad": 1e-08,
+    "conv_tol_cpscf": 1e-12,
+    "max_cycle": 300,
+    "diis_space": 48
+  },
+  "processor": "x86_64",
+  "cpu_arch": "x86_64",
+  "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.17.1",
+    "pyscf": "2.14.0",
+    "torch": "2.11.0+cu128",
+    "ase": "3.29.0",
+    "gpu4pyscf": "1.8.1"
+  },
+  "threads": {
+    "pyscf": 1,
+    "torch": 1,
+    "torch_interop": 1,
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_utc": "2026-11-21T16:03:00.904462+00:00",
+  "runs": [
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.097523868083954,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "raw": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 78,
+              "elapsed_s": 1.684996448457241,
+              "converged": true,
+              "hf_Eh": -131.4175738210352,
+              "corrected_Eh": -132.31840908798986,
+              "s2": 0.7572646831258165,
+              "parent_min_sv": [
+                0.9986327608708692,
+                0.9405555911390967
+              ],
+              "archive_delta_hf_Eh": 1.2221335055073723e-12,
+              "archive_delta_s2": 2.091598005904416e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 74,
+              "elapsed_s": 1.643979012966156,
+              "converged": true,
+              "hf_Eh": -131.41757382103526,
+              "corrected_Eh": -132.31840908833667,
+              "s2": 0.7572646808119394,
+              "parent_min_sv": [
+                0.9986327609449689,
+                0.9405570927100013
+              ],
+              "archive_delta_hf_Eh": 1.1652900866465643e-12,
+              "archive_delta_s2": -2.2227908402783214e-10,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999902,
+              0.9999999999902051
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -5.684341886080802e-14,
+            "delta_corrected_Eh": -3.468016984697897e-10,
+            "max_abs_delta_force_Eh_per_bohr": 2.942829015958881e-07
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "raw": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 53,
+              "elapsed_s": 1.3608496263623238,
+              "converged": true,
+              "hf_Eh": -131.42115716387244,
+              "corrected_Eh": -132.31963080270464,
+              "s2": 0.7704607809413968,
+              "parent_min_sv": [
+                0.9879691417912342,
+                0.9879900538302984
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.4228209721522944e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 69,
+              "elapsed_s": 1.5694444999098778,
+              "converged": true,
+              "hf_Eh": -131.42115716387246,
+              "corrected_Eh": -132.31963080138252,
+              "s2": 0.7704607884086325,
+              "parent_min_sv": [
+                0.9879691417894575,
+                0.9879900538239018
+              ],
+              "archive_delta_hf_Eh": -4.263256414560601e-13,
+              "archive_delta_s2": 8.89005669080234e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999988,
+              0.9999999999999949
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -2.842170943040401e-14,
+            "delta_corrected_Eh": 1.3221210792835336e-09,
+            "max_abs_delta_force_Eh_per_bohr": 1.1941202865059508e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "raw": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 65,
+              "elapsed_s": 1.5206087529659271,
+              "converged": true,
+              "hf_Eh": -131.41945535622204,
+              "corrected_Eh": -132.3192513824904,
+              "s2": 0.7673596882655147,
+              "parent_min_sv": [
+                0.9705133916114532,
+                0.9704515954156647
+              ],
+              "archive_delta_hf_Eh": 2.2737367544323206e-13,
+              "archive_delta_s2": 2.0279848911286535e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 64,
+              "elapsed_s": 1.5701171346008778,
+              "converged": true,
+              "hf_Eh": -131.41945535622193,
+              "corrected_Eh": -132.31925138257827,
+              "s2": 0.7673596894893571,
+              "parent_min_sv": [
+                0.9705133915987095,
+                0.9704515953926571
+              ],
+              "archive_delta_hf_Eh": 3.410605131648481e-13,
+              "archive_delta_s2": 3.251827251915529e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999899,
+              0.9999999999999327
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 1.1368683772161603e-13,
+            "delta_corrected_Eh": -8.787992555880919e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.890719727609354e-09
+          }
+        }
+      ],
+      "first_external_frame": {
+        "parent": 0,
+        "engine": "gpu4pyscf",
+        "guess": "initial_reference",
+        "cycles": 1,
+        "elapsed_s": 3.820550438016653,
+        "converged": true,
+        "hf_Eh": -131.41698640917298,
+        "corrected_Eh": -132.3178416786864,
+        "s2": 0.7569407444215273,
+        "parent_min_sv": [
+          0.9999999999999739,
+          0.9999999999999964
+        ],
+        "archive_delta_hf_Eh": 1.1937117960769683e-12,
+        "archive_delta_s2": 1.674103700111118e-08,
+        "status": "accepted"
+      },
+      "first_external_minus_pyscf": {
+        "min_sv": [
+          0.9999999999999739,
+          0.9999999999999964
+        ],
+        "same_root": true,
+        "delta_hf_Eh": 9.663381206337363e-13,
+        "delta_corrected_Eh": -4.198739134153584e-10,
+        "max_abs_delta_force_Eh_per_bohr": 8.833657158882624e-08
+      }
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.0344073064625263,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "projected": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 74,
+              "elapsed_s": 1.6419251821935177,
+              "converged": true,
+              "hf_Eh": -131.4175738210352,
+              "corrected_Eh": -132.3184090883372,
+              "s2": 0.7572646808134404,
+              "parent_min_sv": [
+                0.9986327609449698,
+                0.9405570926563824
+              ],
+              "archive_delta_hf_Eh": 1.2221335055073723e-12,
+              "archive_delta_s2": -2.2077806249853893e-10,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 78,
+              "elapsed_s": 1.6598127856850624,
+              "converged": true,
+              "hf_Eh": -131.41757382103526,
+              "corrected_Eh": -132.31840908798992,
+              "s2": 0.7572646831258432,
+              "parent_min_sv": [
+                0.9986327608708688,
+                0.9405555911362645
+              ],
+              "archive_delta_hf_Eh": 1.1652900866465643e-12,
+              "archive_delta_s2": 2.091624651257007e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999906,
+              0.9999999999902044
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": -3.4728486753010657e-10,
+            "max_abs_delta_force_Eh_per_bohr": 2.942665860913851e-07
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "projected": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 69,
+              "elapsed_s": 1.586520690470934,
+              "converged": true,
+              "hf_Eh": -131.4211571638724,
+              "corrected_Eh": -132.31963080138246,
+              "s2": 0.7704607884086503,
+              "parent_min_sv": [
+                0.9879691417894585,
+                0.987990053823901
+              ],
+              "archive_delta_hf_Eh": -3.694822225952521e-13,
+              "archive_delta_s2": 8.890074454370733e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 53,
+              "elapsed_s": 1.3599915727972984,
+              "converged": true,
+              "hf_Eh": -131.42115716387244,
+              "corrected_Eh": -132.31963080270464,
+              "s2": 0.7704607809413986,
+              "parent_min_sv": [
+                0.9879691417912345,
+                0.9879900538302977
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.4228227485091338e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999987,
+              0.9999999999999954
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 2.842170943040401e-14,
+            "delta_corrected_Eh": 1.3221779227023944e-09,
+            "max_abs_delta_force_Eh_per_bohr": 1.1941163924854281e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "projected": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 64,
+              "elapsed_s": 1.498759850859642,
+              "converged": true,
+              "hf_Eh": -131.419455356222,
+              "corrected_Eh": -132.31925138257833,
+              "s2": 0.7673596894893748,
+              "parent_min_sv": [
+                0.9705133915987098,
+                0.9704515953926567
+              ],
+              "archive_delta_hf_Eh": 2.8421709430404007e-13,
+              "archive_delta_s2": 3.251845015483923e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 65,
+              "elapsed_s": 1.5104646645486355,
+              "converged": true,
+              "hf_Eh": -131.41945535622216,
+              "corrected_Eh": -132.3192513824905,
+              "s2": 0.7673596882655218,
+              "parent_min_sv": [
+                0.9705133916114529,
+                0.9704515954156642
+              ],
+              "archive_delta_hf_Eh": 1.1368683772161603e-13,
+              "archive_delta_s2": 2.027991996556011e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999988,
+              0.9999999999999324
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 1.7053025658242404e-13,
+            "delta_corrected_Eh": -8.782308213994838e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.890660809461216e-09
+          }
+        }
+      ],
+      "first_external_frame": {
+        "parent": 0,
+        "engine": "gpu4pyscf",
+        "guess": "initial_reference",
+        "cycles": 1,
+        "elapsed_s": 0.8420964367687702,
+        "converged": true,
+        "hf_Eh": -131.41698640917303,
+        "corrected_Eh": -132.31784167868645,
+        "s2": 0.7569407444215379,
+        "parent_min_sv": [
+          0.9999999999999748,
+          0.999999999999998
+        ],
+        "archive_delta_hf_Eh": 1.1368683772161603e-12,
+        "archive_delta_s2": 1.6741047659252217e-08,
+        "status": "accepted"
+      },
+      "first_external_minus_pyscf": {
+        "min_sv": [
+          0.9999999999999748,
+          0.999999999999998
+        ],
+        "same_root": true,
+        "delta_hf_Eh": 9.094947017729282e-13,
+        "delta_corrected_Eh": -4.199307568342192e-10,
+        "max_abs_delta_force_Eh_per_bohr": 8.833649668520127e-08
+      }
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.021600939333439,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "raw": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 78,
+              "elapsed_s": 1.6558353789150715,
+              "converged": true,
+              "hf_Eh": -131.41757382103523,
+              "corrected_Eh": -132.31840908798992,
+              "s2": 0.7572646831258147,
+              "parent_min_sv": [
+                0.9986327608708687,
+                0.9405555911390705
+              ],
+              "archive_delta_hf_Eh": 1.1937117960769683e-12,
+              "archive_delta_s2": 2.0915962295475765e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 74,
+              "elapsed_s": 1.641301728785038,
+              "converged": true,
+              "hf_Eh": -131.41757382103515,
+              "corrected_Eh": -132.3184090883365,
+              "s2": 0.757264680811975,
+              "parent_min_sv": [
+                0.9986327609449729,
+                0.940557092791507
+              ],
+              "archive_delta_hf_Eh": 1.2789769243681803e-12,
+              "archive_delta_s2": -2.2224355689104414e-10,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999897,
+              0.9999999999902025
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 8.526512829121202e-14,
+            "delta_corrected_Eh": -3.4657432479434647e-10,
+            "max_abs_delta_force_Eh_per_bohr": 2.942978764870069e-07
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "raw": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 53,
+              "elapsed_s": 1.3865481242537498,
+              "converged": true,
+              "hf_Eh": -131.42115716387255,
+              "corrected_Eh": -132.31963080270475,
+              "s2": 0.7704607809414092,
+              "parent_min_sv": [
+                0.9879691417912339,
+                0.9879900538302973
+              ],
+              "archive_delta_hf_Eh": -5.115907697472721e-13,
+              "archive_delta_s2": 1.4228334066501702e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 69,
+              "elapsed_s": 1.6376793421804905,
+              "converged": true,
+              "hf_Eh": -131.4211571638725,
+              "corrected_Eh": -132.31963080138254,
+              "s2": 0.7704607884086379,
+              "parent_min_sv": [
+                0.9879691417894588,
+                0.9879900538239005
+              ],
+              "archive_delta_hf_Eh": -4.547473508864641e-13,
+              "archive_delta_s2": 8.890062019872857e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999994,
+              0.9999999999999942
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": 1.3222063444118248e-09,
+            "max_abs_delta_force_Eh_per_bohr": 1.1941138765292347e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "raw": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 65,
+              "elapsed_s": 1.4958974719047546,
+              "converged": true,
+              "hf_Eh": -131.419455356222,
+              "corrected_Eh": -132.31925138249034,
+              "s2": 0.7673596882655183,
+              "parent_min_sv": [
+                0.9705133916114522,
+                0.9704515954156641
+              ],
+              "archive_delta_hf_Eh": 2.8421709430404007e-13,
+              "archive_delta_s2": 2.0279884438423323e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 64,
+              "elapsed_s": 1.499910145998001,
+              "converged": true,
+              "hf_Eh": -131.419455356222,
+              "corrected_Eh": -132.31925138257833,
+              "s2": 0.7673596894893713,
+              "parent_min_sv": [
+                0.970513391598709,
+                0.9704515953926558
+              ],
+              "archive_delta_hf_Eh": 2.8421709430404007e-13,
+              "archive_delta_s2": 3.251841462770244e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999964,
+              0.9999999999999314
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 0.0,
+            "delta_corrected_Eh": -8.799361239653081e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.890673811213668e-09
+          }
+        }
+      ],
+      "first_external_frame": {
+        "parent": 0,
+        "engine": "gpu4pyscf",
+        "guess": "initial_reference",
+        "cycles": 1,
+        "elapsed_s": 0.8336800895631313,
+        "converged": true,
+        "hf_Eh": -131.41698640917303,
+        "corrected_Eh": -132.31784167868645,
+        "s2": 0.7569407444215308,
+        "parent_min_sv": [
+          0.9999999999999732,
+          0.9999999999999986
+        ],
+        "archive_delta_hf_Eh": 1.1368683772161603e-12,
+        "archive_delta_s2": 1.674104055382486e-08,
+        "status": "accepted"
+      },
+      "first_external_minus_pyscf": {
+        "min_sv": [
+          0.9999999999999732,
+          0.9999999999999986
+        ],
+        "same_root": true,
+        "delta_hf_Eh": 9.094947017729282e-13,
+        "delta_corrected_Eh": -4.199307568342192e-10,
+        "max_abs_delta_force_Eh_per_bohr": 8.833668389829352e-08
+      }
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.0304220244288445,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "projected": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 74,
+              "elapsed_s": 1.649743713438511,
+              "converged": true,
+              "hf_Eh": -131.41757382103526,
+              "corrected_Eh": -132.31840908833684,
+              "s2": 0.7572646808126429,
+              "parent_min_sv": [
+                0.9986327609449781,
+                0.9405570928694795
+              ],
+              "archive_delta_hf_Eh": 1.1652900866465643e-12,
+              "archive_delta_s2": -2.2157564671942964e-10,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 0,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 78,
+              "elapsed_s": 1.6581169813871384,
+              "converged": true,
+              "hf_Eh": -131.41757382103518,
+              "corrected_Eh": -132.31840908798983,
+              "s2": 0.7572646831258254,
+              "parent_min_sv": [
+                0.9986327608708688,
+                0.9405555911373141
+              ],
+              "archive_delta_hf_Eh": 1.2505552149377763e-12,
+              "archive_delta_s2": 2.091606887688613e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999897,
+              0.999999999990201
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -8.526512829121202e-14,
+            "delta_corrected_Eh": -3.4700065043580253e-10,
+            "max_abs_delta_force_Eh_per_bohr": 2.94309113406388e-07
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "projected": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 69,
+              "elapsed_s": 1.5763654671609402,
+              "converged": true,
+              "hf_Eh": -131.4211571638725,
+              "corrected_Eh": -132.31963080138254,
+              "s2": 0.7704607884086272,
+              "parent_min_sv": [
+                0.9879691417894597,
+                0.9879900538238989
+              ],
+              "archive_delta_hf_Eh": -4.547473508864641e-13,
+              "archive_delta_s2": 8.890051361731821e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 1,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 53,
+              "elapsed_s": 1.3559430316090584,
+              "converged": true,
+              "hf_Eh": -131.4211571638725,
+              "corrected_Eh": -132.3196308027047,
+              "s2": 0.7704607809413986,
+              "parent_min_sv": [
+                0.9879691417912337,
+                0.9879900538302971
+              ],
+              "archive_delta_hf_Eh": -4.547473508864641e-13,
+              "archive_delta_s2": 1.4228227485091338e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999926,
+              0.9999999999999923
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 0.0,
+            "delta_corrected_Eh": 1.322149500992964e-09,
+            "max_abs_delta_force_Eh_per_bohr": 1.1941194689307766e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "projected": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "initial_reference",
+              "cycles": 64,
+              "elapsed_s": 1.4947051852941513,
+              "converged": true,
+              "hf_Eh": -131.4194553562221,
+              "corrected_Eh": -132.31925138257847,
+              "s2": 0.7673596894894885,
+              "parent_min_sv": [
+                0.9705133915987092,
+                0.9704515953926545
+              ],
+              "archive_delta_hf_Eh": 1.7053025658242404e-13,
+              "archive_delta_s2": 3.2519587023216445e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 2,
+              "engine": "gpu4pyscf",
+              "guess": "dm0",
+              "cycles": 65,
+              "elapsed_s": 1.5015321336686611,
+              "converged": true,
+              "hf_Eh": -131.41945535622204,
+              "corrected_Eh": -132.3192513824904,
+              "s2": 0.7673596882655236,
+              "parent_min_sv": [
+                0.9705133916114526,
+                0.970451595415664
+              ],
+              "archive_delta_hf_Eh": 2.2737367544323206e-13,
+              "archive_delta_s2": 2.0279937729128505e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999974,
+              0.9999999999999312
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -5.684341886080802e-14,
+            "delta_corrected_Eh": -8.807887752482202e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.890489221023313e-09
+          }
+        }
+      ],
+      "first_external_frame": {
+        "parent": 0,
+        "engine": "gpu4pyscf",
+        "guess": "initial_reference",
+        "cycles": 1,
+        "elapsed_s": 0.8637324534356594,
+        "converged": true,
+        "hf_Eh": -131.41698640917303,
+        "corrected_Eh": -132.31784167868645,
+        "s2": 0.7569407444215379,
+        "parent_min_sv": [
+          0.9999999999999748,
+          0.999999999999998
+        ],
+        "archive_delta_hf_Eh": 1.1368683772161603e-12,
+        "archive_delta_s2": 1.6741047659252217e-08,
+        "status": "accepted"
+      },
+      "first_external_minus_pyscf": {
+        "min_sv": [
+          0.9999999999999748,
+          0.999999999999998
+        ],
+        "same_root": true,
+        "delta_hf_Eh": 9.094947017729282e-13,
+        "delta_corrected_Eh": -4.199307568342192e-10,
+        "max_abs_delta_force_Eh_per_bohr": 8.833649668520127e-08
+      }
+    }
+  ],
+  "slurm": {
+    "job_id": "19128",
+    "host": "node1",
+    "visible_devices": "3"
+  },
+  "cuda_device": "NVIDIA GeForce RTX 5090",
+  "finished_utc": "2026-11-21T16:03:57.724061+00:00"
+}

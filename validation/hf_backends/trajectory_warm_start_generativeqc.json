@@ -1,0 +1,411 @@
+{
+  "case": "acetonitrile",
+  "commit": "bfb94e18b2c35867454665d49ed08846769c532c",
+  "driver_sha256": "ce646e0d0f69f8e8cb4da23e4dfdacde7d65910412f60ed6bdbff98cd9398e53",
+  "checkpoint": "tests/spin_energy/data/qm9_methanol/joint_B.pth",
+  "checkpoint_sha256": "64f432a37ec324aebe2ee2103b1cddbe7bc2fff21e003e257264a6ae80833e39",
+  "archive": {
+    "trajectory": "runs/mol_000007/B/trajectory.jsonl",
+    "sha256": "c5a2ffbf4e016c267a6dc5aa1f1a9259f46f861a564eddf7e1e936d8cee14525",
+    "atom_order_source": "initial/mol_000007.xyz",
+    "xyz_sha256": "52e6835e900fd1c36a262f215c45ebb912a34c21874744f942bf96e0ccf0df0e",
+    "atom_order": [
+      "C",
+      "C",
+      "N",
+      "H",
+      "H",
+      "H"
+    ],
+    "unit": "Angstrom",
+    "skipped_archive_trials": [
+      {
+        "line": 37,
+        "step": 1,
+        "attempt": 0,
+        "reason": "root_discontinuity"
+      },
+      {
+        "line": 38,
+        "step": 1,
+        "attempt": 1,
+        "reason": "energy_line_search"
+      },
+      {
+        "line": 40,
+        "step": 2,
+        "attempt": 0,
+        "reason": "energy_line_search"
+      }
+    ]
+  },
+  "frames": [
+    {
+      "event": "initial",
+      "xyz": [
+        [
+          -0.49383514532020906,
+          -0.001943666721524541,
+          0.0023097693875349574
+        ],
+        [
+          0.9620855993219419,
+          0.003620038776760801,
+          -0.00045816488168417814
+        ],
+        [
+          2.1107736760898623,
+          0.007849007232348128,
+          -0.0015655255558374597
+        ],
+        [
+          -0.8537682207687471,
+          -0.6461312376158597,
+          -0.7974796063998296
+        ],
+        [
+          -0.862727290139936,
+          -0.3724241473778315,
+          0.9566550981980414
+        ],
+        [
+          -0.8625286191820731,
+          1.0090300058058448,
+          -0.15946157064827554
+        ]
+      ],
+      "HF_Eh": -131.41698640917417,
+      "S2": 0.7569407276804903,
+      "line": 35
+    },
+    {
+      "event": "accepted",
+      "step": 0,
+      "attempt": 0,
+      "stage": "cation_seed",
+      "xyz": [
+        [
+          -0.4920985856100238,
+          0.0009045890035343904,
+          0.004404869913747676
+        ],
+        [
+          0.9551909689752457,
+          0.007733063673262288,
+          0.001363707613186612
+        ],
+        [
+          2.105124987147126,
+          0.005376865295905235,
+          -0.00444278443874538
+        ],
+        [
+          -0.8429547143203933,
+          -0.6508986989572187,
+          -0.7995627268116289
+        ],
+        [
+          -0.8601571556869636,
+          -0.3763966875619267,
+          0.9565198752381069
+        ],
+        [
+          -0.865105500504152,
+          1.0132808686461816,
+          -0.15828294141471727
+        ]
+      ],
+      "step_A": 0.011999999999999959,
+      "HF_Eh": -131.41757382103643,
+      "S2": 0.7572646810342185,
+      "line": 36
+    },
+    {
+      "event": "accepted",
+      "step": 1,
+      "attempt": 2,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.48761413657082503,
+          0.003994887996484036,
+          0.007349340775057043
+        ],
+        [
+          0.9301955636291662,
+          0.007275956574042627,
+          0.00121960804682906
+        ],
+        [
+          2.125369274504715,
+          0.00536367505314735,
+          -0.004626182043274154
+        ],
+        [
+          -0.8431813505669814,
+          -0.6521724633652994,
+          -0.801217778710811
+        ],
+        [
+          -0.8599250381988417,
+          -0.3781786350331775,
+          0.9571279794680947
+        ],
+        [
+          -0.8648443127964052,
+          1.0137165788745417,
+          -0.15985296743594435
+        ]
+      ],
+      "step_A": 0.02499999999999999,
+      "HF_Eh": -131.42115716387204,
+      "S2": 0.7704607795185758,
+      "line": 39
+    },
+    {
+      "event": "accepted",
+      "step": 2,
+      "attempt": 1,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.47623659082206704,
+          0.03518275177534268,
+          0.02913476102078937
+        ],
+        [
+          0.9289205360287799,
+          0.002522731081451916,
+          0.0002396521343539799
+        ],
+        [
+          2.1093279168175982,
+          0.005367039922549474,
+          -0.005676307744239445
+        ],
+        [
+          -0.8439234723607077,
+          -0.6624789727142476,
+          -0.811759614663592
+        ],
+        [
+          -0.8568405245539175,
+          -0.39975884478492446,
+          0.9647825371569292
+        ],
+        [
+          -0.8612478651089615,
+          1.0191652948195735,
+          -0.17672102780433335
+        ]
+      ],
+      "step_A": 0.039708134300630235,
+      "HF_Eh": -131.41945535622227,
+      "S2": 0.7673596862375298,
+      "line": 41
+    }
+  ],
+  "reference": "DF-UHF/def2-SVP, spherical, q=1, spin=1",
+  "jk_auxbasis": "def2-svp-jkfit",
+  "engine": "generativeqc",
+  "scf_device": "cpu",
+  "response_backend": "zvector",
+  "model_and_response_device": "cpu",
+  "scf_controls": {
+    "conv_tol": 1e-12,
+    "conv_tol_grad": 1e-08,
+    "conv_tol_cpscf": 1e-12,
+    "max_cycle": 300,
+    "diis_space": 48
+  },
+  "processor": "Apple M4",
+  "cpu_arch": "arm64",
+  "platform": "macOS-15.6.1-arm64-arm-64bit",
+  "python": "3.11.15",
+  "versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pyscf": "2.14.0",
+    "torch": "2.13.0",
+    "ase": "3.29.0",
+    "generativeqc": "0.1.0"
+  },
+  "threads": {
+    "pyscf": 1,
+    "torch": 1,
+    "torch_interop": 1,
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_utc": "2026-11-21T15:54:39.950158+00:00",
+  "runs": [
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 100,
+        "elapsed_s": 0.8039490419905633,
+        "converged": true,
+        "hf_Eh": -131.41698640917463,
+        "corrected_Eh": -132.31784168311378,
+        "s2": 0.7569407316959555,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": -4.547473508864641e-13,
+        "archive_delta_s2": 4.0154652936053026e-09,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "pyscf_projected": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 72,
+              "elapsed_s": 0.6557182089891285,
+              "converged": true,
+              "hf_Eh": -131.41757382103634,
+              "corrected_Eh": -132.31840908844387,
+              "s2": 0.7572646805270917,
+              "parent_min_sv": [
+                0.9986327607177841,
+                0.9405532354298171
+              ],
+              "archive_delta_hf_Eh": 8.526512829121202e-14,
+              "archive_delta_s2": -5.071267850098593e-10,
+              "status": "accepted"
+            },
+            "native": {
+              "parent": 0,
+              "engine": "generativeqc",
+              "guess": "initial_reference",
+              "cycles": 130,
+              "status": "failed",
+              "phase": "scf",
+              "error": "GenerativeQC did not converge using the requested HF seed",
+              "elapsed_s": 26.42961574997753,
+              "converged": true,
+              "warm_start_used": true,
+              "fallback": true
+            }
+          },
+          "right_minus_left": null
+        },
+        {
+          "line": 39,
+          "paths": {
+            "pyscf_projected": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 68,
+              "elapsed_s": 0.6228999580489472,
+              "converged": true,
+              "hf_Eh": -131.4211571638725,
+              "corrected_Eh": -132.31963080168111,
+              "s2": 0.7704607847826495,
+              "parent_min_sv": [
+                0.9879691417822363,
+                0.9879900538319788
+              ],
+              "archive_delta_hf_Eh": -4.547473508864641e-13,
+              "archive_delta_s2": 5.264073621447096e-09,
+              "status": "accepted"
+            },
+            "native": {
+              "parent": 0,
+              "engine": "generativeqc",
+              "guess": "initial_reference",
+              "cycles": 170,
+              "status": "failed",
+              "phase": "scf",
+              "error": "GenerativeQC did not converge using the requested HF seed",
+              "elapsed_s": 27.435180583037436,
+              "converged": true,
+              "warm_start_used": true,
+              "fallback": true
+            }
+          },
+          "right_minus_left": null
+        },
+        {
+          "line": 41,
+          "paths": {
+            "pyscf_projected": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 57,
+              "elapsed_s": 0.5809500000905246,
+              "converged": true,
+              "hf_Eh": -131.41945535622165,
+              "corrected_Eh": -132.319251382089,
+              "s2": 0.7673596875318616,
+              "parent_min_sv": [
+                0.9705133915888604,
+                0.9704515954381592
+              ],
+              "archive_delta_hf_Eh": 6.252776074688882e-13,
+              "archive_delta_s2": 1.294331752887956e-09,
+              "status": "accepted"
+            },
+            "native": {
+              "parent": 0,
+              "engine": "generativeqc",
+              "guess": "initial_reference",
+              "cycles": 199,
+              "status": "failed",
+              "phase": "scf",
+              "error": "GenerativeQC did not converge using the requested HF seed",
+              "elapsed_s": 28.439733333070762,
+              "converged": true,
+              "warm_start_used": true,
+              "fallback": true
+            }
+          },
+          "right_minus_left": null
+        }
+      ],
+      "first_external_frame": {
+        "parent": 0,
+        "engine": "generativeqc",
+        "guess": "initial_reference",
+        "cycles": 23,
+        "elapsed_s": 8.473166291951202,
+        "converged": true,
+        "warm_start_used": true,
+        "fallback": false,
+        "hf_Eh": -131.41698640921078,
+        "corrected_Eh": -132.31784168385903,
+        "s2": 0.7569407280236362,
+        "parent_min_sv": [
+          0.9999999999999788,
+          0.9999999999999964
+        ],
+        "archive_delta_hf_Eh": -3.660716174636036e-11,
+        "archive_delta_s2": 3.43145956094304e-10,
+        "status": "accepted"
+      },
+      "first_external_minus_pyscf": {
+        "min_sv": [
+          0.9999999999999788,
+          0.9999999999999964
+        ],
+        "same_root": true,
+        "delta_hf_Eh": -3.61524143954739e-11,
+        "delta_corrected_Eh": -7.452456429746235e-10,
+        "max_abs_delta_force_Eh_per_bohr": 2.1740539857088848e-07
+      }
+    }
+  ],
+  "native_scf_controls": {
+    "conv_tol": 1e-12,
+    "max_cycle": 300,
+    "density_tolerance": 1e-10
+  },
+  "finished_utc": "2026-11-21T15:56:13.669723+00:00"
+}

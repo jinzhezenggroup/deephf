@@ -1,0 +1,26 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+........................................................................ [ 20%]
+........................................................................ [ 27%]
+........................................................................ [ 34%]
+........................................................................ [ 41%]
+........................................................................ [ 48%]
+........................................................................ [ 54%]
+........................................................................ [ 61%]
+........................................................................ [ 68%]
+........................................................................ [ 75%]
+........................................................................ [ 82%]
+........................................................................ [ 89%]
+........................................................................ [ 96%]
+.........................................                                [100%]
+=============================== warnings summary ===============================
+tests/deephf_performance/test_cache_safety.py::test_public_uhf_sensitivity_cannot_trigger_zvector_zero_fast_path
+  /data/chuang/deephf-warm-replay-IqraVs/code/deepks/descriptor/workspace.py:164: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+    sensitivity = torch.as_tensor(
+
+tests/deephf_performance/test_integrity_allocations.py::test_detailed_derivative_workspace_has_bounded_tensor_materialization
+  /data/chuang/deephf-pr2-0BOVFV/.venv/lib/python3.11/site-packages/torch/profiler/profiler.py:224: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+    _warn_once(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1049 passed, 2 warnings in 428.73s (0:07:08)

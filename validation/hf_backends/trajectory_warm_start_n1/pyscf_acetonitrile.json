@@ -1,0 +1,938 @@
+{
+  "case": "acetonitrile",
+  "commit": "bfb94e18b2c35867454665d49ed08846769c532c",
+  "driver_sha256": "1f24fc44875c005972f306918731ac195b2d91762f98f83838d20422b51b1fa2",
+  "checkpoint": "tests/spin_energy/data/qm9_methanol/joint_B.pth",
+  "checkpoint_sha256": "64f432a37ec324aebe2ee2103b1cddbe7bc2fff21e003e257264a6ae80833e39",
+  "archive": {
+    "trajectory": "runs/mol_000007/B/trajectory.jsonl",
+    "sha256": "c5a2ffbf4e016c267a6dc5aa1f1a9259f46f861a564eddf7e1e936d8cee14525",
+    "atom_order_source": "initial/mol_000007.xyz",
+    "xyz_sha256": "52e6835e900fd1c36a262f215c45ebb912a34c21874744f942bf96e0ccf0df0e",
+    "atom_order": [
+      "C",
+      "C",
+      "N",
+      "H",
+      "H",
+      "H"
+    ],
+    "unit": "Angstrom",
+    "skipped_archive_trials": [
+      {
+        "line": 37,
+        "step": 1,
+        "attempt": 0,
+        "reason": "root_discontinuity"
+      },
+      {
+        "line": 38,
+        "step": 1,
+        "attempt": 1,
+        "reason": "energy_line_search"
+      },
+      {
+        "line": 40,
+        "step": 2,
+        "attempt": 0,
+        "reason": "energy_line_search"
+      }
+    ]
+  },
+  "frames": [
+    {
+      "event": "initial",
+      "xyz": [
+        [
+          -0.49383514532020906,
+          -0.001943666721524541,
+          0.0023097693875349574
+        ],
+        [
+          0.9620855993219419,
+          0.003620038776760801,
+          -0.00045816488168417814
+        ],
+        [
+          2.1107736760898623,
+          0.007849007232348128,
+          -0.0015655255558374597
+        ],
+        [
+          -0.8537682207687471,
+          -0.6461312376158597,
+          -0.7974796063998296
+        ],
+        [
+          -0.862727290139936,
+          -0.3724241473778315,
+          0.9566550981980414
+        ],
+        [
+          -0.8625286191820731,
+          1.0090300058058448,
+          -0.15946157064827554
+        ]
+      ],
+      "HF_Eh": -131.41698640917417,
+      "S2": 0.7569407276804903,
+      "line": 35
+    },
+    {
+      "event": "accepted",
+      "step": 0,
+      "attempt": 0,
+      "stage": "cation_seed",
+      "xyz": [
+        [
+          -0.4920985856100238,
+          0.0009045890035343904,
+          0.004404869913747676
+        ],
+        [
+          0.9551909689752457,
+          0.007733063673262288,
+          0.001363707613186612
+        ],
+        [
+          2.105124987147126,
+          0.005376865295905235,
+          -0.00444278443874538
+        ],
+        [
+          -0.8429547143203933,
+          -0.6508986989572187,
+          -0.7995627268116289
+        ],
+        [
+          -0.8601571556869636,
+          -0.3763966875619267,
+          0.9565198752381069
+        ],
+        [
+          -0.865105500504152,
+          1.0132808686461816,
+          -0.15828294141471727
+        ]
+      ],
+      "step_A": 0.011999999999999959,
+      "HF_Eh": -131.41757382103643,
+      "S2": 0.7572646810342185,
+      "line": 36
+    },
+    {
+      "event": "accepted",
+      "step": 1,
+      "attempt": 2,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.48761413657082503,
+          0.003994887996484036,
+          0.007349340775057043
+        ],
+        [
+          0.9301955636291662,
+          0.007275956574042627,
+          0.00121960804682906
+        ],
+        [
+          2.125369274504715,
+          0.00536367505314735,
+          -0.004626182043274154
+        ],
+        [
+          -0.8431813505669814,
+          -0.6521724633652994,
+          -0.801217778710811
+        ],
+        [
+          -0.8599250381988417,
+          -0.3781786350331775,
+          0.9571279794680947
+        ],
+        [
+          -0.8648443127964052,
+          1.0137165788745417,
+          -0.15985296743594435
+        ]
+      ],
+      "step_A": 0.02499999999999999,
+      "HF_Eh": -131.42115716387204,
+      "S2": 0.7704607795185758,
+      "line": 39
+    },
+    {
+      "event": "accepted",
+      "step": 2,
+      "attempt": 1,
+      "stage": "cation",
+      "xyz": [
+        [
+          -0.47623659082206704,
+          0.03518275177534268,
+          0.02913476102078937
+        ],
+        [
+          0.9289205360287799,
+          0.002522731081451916,
+          0.0002396521343539799
+        ],
+        [
+          2.1093279168175982,
+          0.005367039922549474,
+          -0.005676307744239445
+        ],
+        [
+          -0.8439234723607077,
+          -0.6624789727142476,
+          -0.811759614663592
+        ],
+        [
+          -0.8568405245539175,
+          -0.39975884478492446,
+          0.9647825371569292
+        ],
+        [
+          -0.8612478651089615,
+          1.0191652948195735,
+          -0.17672102780433335
+        ]
+      ],
+      "step_A": 0.039708134300630235,
+      "HF_Eh": -131.41945535622227,
+      "S2": 0.7673596862375298,
+      "line": 41
+    }
+  ],
+  "reference": "DF-UHF/def2-SVP, spherical, q=1, spin=1",
+  "jk_auxbasis": "def2-svp-jkfit",
+  "engine": "pyscf",
+  "scf_device": "cpu",
+  "response_backend": "zvector",
+  "model_and_response_device": "cpu",
+  "scf_controls": {
+    "conv_tol": 1e-12,
+    "conv_tol_grad": 1e-08,
+    "conv_tol_cpscf": 1e-12,
+    "max_cycle": 300,
+    "diis_space": 48
+  },
+  "processor": "x86_64",
+  "cpu_arch": "x86_64",
+  "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.17.1",
+    "pyscf": "2.14.0",
+    "torch": "2.11.0+cu128",
+    "ase": "3.29.0"
+  },
+  "threads": {
+    "pyscf": 1,
+    "torch": 1,
+    "torch_interop": 1,
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "started_utc": "2026-11-21T16:02:17.831560+00:00",
+  "runs": [
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.525757137686014,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "raw": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 61,
+              "elapsed_s": 1.2355825379490852,
+              "converged": true,
+              "hf_Eh": -131.4175738210364,
+              "corrected_Eh": -132.3184090880817,
+              "s2": 0.7572646820794997,
+              "parent_min_sv": [
+                0.9986327608904333,
+                0.940555975158673
+              ],
+              "archive_delta_hf_Eh": 2.842170943040401e-14,
+              "archive_delta_s2": 1.0452811949335228e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 79,
+              "elapsed_s": 1.4202724136412144,
+              "converged": true,
+              "hf_Eh": -131.41757382103634,
+              "corrected_Eh": -132.31840908843878,
+              "s2": 0.7572646805741563,
+              "parent_min_sv": [
+                0.9986327609091454,
+                0.9405564210674554
+              ],
+              "archive_delta_hf_Eh": 8.526512829121202e-14,
+              "archive_delta_s2": -4.6006221054994967e-10,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999711,
+              0.9999999999991377
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": -3.5709035728359595e-10,
+            "max_abs_delta_force_Eh_per_bohr": 7.181991431431944e-08
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "raw": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 35,
+              "elapsed_s": 0.9929940737783909,
+              "converged": true,
+              "hf_Eh": -131.42115716387227,
+              "corrected_Eh": -132.31963080244822,
+              "s2": 0.7704607812567676,
+              "parent_min_sv": [
+                0.9879691417834219,
+                0.9879900538302729
+              ],
+              "archive_delta_hf_Eh": -2.2737367544323206e-13,
+              "archive_delta_s2": 1.738191812705736e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 68,
+              "elapsed_s": 1.311629205942154,
+              "converged": true,
+              "hf_Eh": -131.4211571638722,
+              "corrected_Eh": -132.31963080159613,
+              "s2": 0.770460785143749,
+              "parent_min_sv": [
+                0.9879691417846638,
+                0.9879900538324259
+              ],
+              "archive_delta_hf_Eh": -1.7053025658242404e-13,
+              "archive_delta_s2": 5.6251732161172185e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999593,
+              0.9999999999999651
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": 8.520828487235121e-10,
+            "max_abs_delta_force_Eh_per_bohr": 1.201009200944847e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "raw": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 41,
+              "elapsed_s": 1.0305402763187885,
+              "converged": true,
+              "hf_Eh": -131.41945535622187,
+              "corrected_Eh": -132.3192513820033,
+              "s2": 0.7673596883712879,
+              "parent_min_sv": [
+                0.9705133916006432,
+                0.9704515954302632
+              ],
+              "archive_delta_hf_Eh": 3.979039320256561e-13,
+              "archive_delta_s2": 2.1337580591307415e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 57,
+              "elapsed_s": 1.1936800070106983,
+              "converged": true,
+              "hf_Eh": -131.41945535622267,
+              "corrected_Eh": -132.31925138209226,
+              "s2": 0.7673596874790363,
+              "parent_min_sv": [
+                0.9705133915894991,
+                0.9704515954341735
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.2415064531978715e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999798,
+              0.9999999999999956
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -7.958078640513122e-13,
+            "delta_corrected_Eh": -8.895995051716454e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.74996881841772e-10
+          }
+        }
+      ]
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.0547309927642345,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "projected": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 79,
+              "elapsed_s": 1.3970645442605019,
+              "converged": true,
+              "hf_Eh": -131.41757382103634,
+              "corrected_Eh": -132.31840908843878,
+              "s2": 0.7572646805741563,
+              "parent_min_sv": [
+                0.9986327609091454,
+                0.9405564210674554
+              ],
+              "archive_delta_hf_Eh": 8.526512829121202e-14,
+              "archive_delta_s2": -4.6006221054994967e-10,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 61,
+              "elapsed_s": 1.2114257253706455,
+              "converged": true,
+              "hf_Eh": -131.4175738210364,
+              "corrected_Eh": -132.3184090880817,
+              "s2": 0.7572646820794997,
+              "parent_min_sv": [
+                0.9986327608904333,
+                0.940555975158673
+              ],
+              "archive_delta_hf_Eh": 2.842170943040401e-14,
+              "archive_delta_s2": 1.0452811949335228e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999711,
+              0.9999999999991377
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": -3.5709035728359595e-10,
+            "max_abs_delta_force_Eh_per_bohr": 7.181991431431944e-08
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "projected": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 68,
+              "elapsed_s": 1.3085203543305397,
+              "converged": true,
+              "hf_Eh": -131.4211571638722,
+              "corrected_Eh": -132.31963080159613,
+              "s2": 0.770460785143749,
+              "parent_min_sv": [
+                0.9879691417846638,
+                0.9879900538324259
+              ],
+              "archive_delta_hf_Eh": -1.7053025658242404e-13,
+              "archive_delta_s2": 5.6251732161172185e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 35,
+              "elapsed_s": 0.9905610904097557,
+              "converged": true,
+              "hf_Eh": -131.42115716387227,
+              "corrected_Eh": -132.31963080244822,
+              "s2": 0.7704607812567676,
+              "parent_min_sv": [
+                0.9879691417834219,
+                0.9879900538302729
+              ],
+              "archive_delta_hf_Eh": -2.2737367544323206e-13,
+              "archive_delta_s2": 1.738191812705736e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999593,
+              0.9999999999999651
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": 8.520828487235121e-10,
+            "max_abs_delta_force_Eh_per_bohr": 1.201009200944847e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "projected": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 57,
+              "elapsed_s": 1.1929033808410168,
+              "converged": true,
+              "hf_Eh": -131.41945535622267,
+              "corrected_Eh": -132.31925138209226,
+              "s2": 0.7673596874790363,
+              "parent_min_sv": [
+                0.9705133915894991,
+                0.9704515954341735
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.2415064531978715e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 41,
+              "elapsed_s": 1.0261954590678215,
+              "converged": true,
+              "hf_Eh": -131.41945535622187,
+              "corrected_Eh": -132.3192513820033,
+              "s2": 0.7673596883712879,
+              "parent_min_sv": [
+                0.9705133916006432,
+                0.9704515954302632
+              ],
+              "archive_delta_hf_Eh": 3.979039320256561e-13,
+              "archive_delta_s2": 2.1337580591307415e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999798,
+              0.9999999999999956
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -7.958078640513122e-13,
+            "delta_corrected_Eh": -8.895995051716454e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.74996881841772e-10
+          }
+        }
+      ]
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.024063367396593,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "raw": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 61,
+              "elapsed_s": 1.2280917167663574,
+              "converged": true,
+              "hf_Eh": -131.4175738210364,
+              "corrected_Eh": -132.3184090880817,
+              "s2": 0.7572646820794997,
+              "parent_min_sv": [
+                0.9986327608904333,
+                0.940555975158673
+              ],
+              "archive_delta_hf_Eh": 2.842170943040401e-14,
+              "archive_delta_s2": 1.0452811949335228e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 79,
+              "elapsed_s": 1.3946491926908493,
+              "converged": true,
+              "hf_Eh": -131.41757382103634,
+              "corrected_Eh": -132.31840908843878,
+              "s2": 0.7572646805741563,
+              "parent_min_sv": [
+                0.9986327609091454,
+                0.9405564210674554
+              ],
+              "archive_delta_hf_Eh": 8.526512829121202e-14,
+              "archive_delta_s2": -4.6006221054994967e-10,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999711,
+              0.9999999999991377
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": -3.5709035728359595e-10,
+            "max_abs_delta_force_Eh_per_bohr": 7.181991431431944e-08
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "raw": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 35,
+              "elapsed_s": 0.9871771149337292,
+              "converged": true,
+              "hf_Eh": -131.42115716387227,
+              "corrected_Eh": -132.31963080244822,
+              "s2": 0.7704607812567676,
+              "parent_min_sv": [
+                0.9879691417834219,
+                0.9879900538302729
+              ],
+              "archive_delta_hf_Eh": -2.2737367544323206e-13,
+              "archive_delta_s2": 1.738191812705736e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 68,
+              "elapsed_s": 1.2907185778021812,
+              "converged": true,
+              "hf_Eh": -131.4211571638722,
+              "corrected_Eh": -132.31963080159613,
+              "s2": 0.770460785143749,
+              "parent_min_sv": [
+                0.9879691417846638,
+                0.9879900538324259
+              ],
+              "archive_delta_hf_Eh": -1.7053025658242404e-13,
+              "archive_delta_s2": 5.6251732161172185e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999593,
+              0.9999999999999651
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": 8.520828487235121e-10,
+            "max_abs_delta_force_Eh_per_bohr": 1.201009200944847e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "raw": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 41,
+              "elapsed_s": 1.0265231393277645,
+              "converged": true,
+              "hf_Eh": -131.41945535622187,
+              "corrected_Eh": -132.3192513820033,
+              "s2": 0.7673596883712879,
+              "parent_min_sv": [
+                0.9705133916006432,
+                0.9704515954302632
+              ],
+              "archive_delta_hf_Eh": 3.979039320256561e-13,
+              "archive_delta_s2": 2.1337580591307415e-09,
+              "status": "accepted"
+            },
+            "projected": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 57,
+              "elapsed_s": 1.1946686320006847,
+              "converged": true,
+              "hf_Eh": -131.41945535622267,
+              "corrected_Eh": -132.31925138209226,
+              "s2": 0.7673596874790363,
+              "parent_min_sv": [
+                0.9705133915894991,
+                0.9704515954341735
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.2415064531978715e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999798,
+              0.9999999999999956
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -7.958078640513122e-13,
+            "delta_corrected_Eh": -8.895995051716454e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.74996881841772e-10
+          }
+        }
+      ]
+    },
+    {
+      "first_pyscf_frame": {
+        "parent": null,
+        "engine": "pyscf",
+        "guess": "independent",
+        "cycles": 278,
+        "elapsed_s": 3.0244431160390377,
+        "converged": true,
+        "hf_Eh": -131.41698640917394,
+        "corrected_Eh": -132.31784167826652,
+        "s2": 0.7569407461675901,
+        "parent_min_sv": null,
+        "archive_delta_hf_Eh": 2.2737367544323206e-13,
+        "archive_delta_s2": 1.84870998509723e-08,
+        "status": "accepted"
+      },
+      "warm_frames": [
+        {
+          "line": 36,
+          "paths": {
+            "projected": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 79,
+              "elapsed_s": 1.3988021612167358,
+              "converged": true,
+              "hf_Eh": -131.41757382103634,
+              "corrected_Eh": -132.31840908843878,
+              "s2": 0.7572646805741563,
+              "parent_min_sv": [
+                0.9986327609091454,
+                0.9405564210674554
+              ],
+              "archive_delta_hf_Eh": 8.526512829121202e-14,
+              "archive_delta_s2": -4.6006221054994967e-10,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 0,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 61,
+              "elapsed_s": 1.2116147316992283,
+              "converged": true,
+              "hf_Eh": -131.4175738210364,
+              "corrected_Eh": -132.3184090880817,
+              "s2": 0.7572646820794997,
+              "parent_min_sv": [
+                0.9986327608904333,
+                0.940555975158673
+              ],
+              "archive_delta_hf_Eh": 2.842170943040401e-14,
+              "archive_delta_s2": 1.0452811949335228e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999711,
+              0.9999999999991377
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": -3.5709035728359595e-10,
+            "max_abs_delta_force_Eh_per_bohr": 7.181991431431944e-08
+          }
+        },
+        {
+          "line": 39,
+          "paths": {
+            "projected": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 68,
+              "elapsed_s": 1.3016995079815388,
+              "converged": true,
+              "hf_Eh": -131.4211571638722,
+              "corrected_Eh": -132.31963080159613,
+              "s2": 0.770460785143749,
+              "parent_min_sv": [
+                0.9879691417846638,
+                0.9879900538324259
+              ],
+              "archive_delta_hf_Eh": -1.7053025658242404e-13,
+              "archive_delta_s2": 5.6251732161172185e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 1,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 35,
+              "elapsed_s": 0.9902937151491642,
+              "converged": true,
+              "hf_Eh": -131.42115716387227,
+              "corrected_Eh": -132.31963080244822,
+              "s2": 0.7704607812567676,
+              "parent_min_sv": [
+                0.9879691417834219,
+                0.9879900538302729
+              ],
+              "archive_delta_hf_Eh": -2.2737367544323206e-13,
+              "archive_delta_s2": 1.738191812705736e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999593,
+              0.9999999999999651
+            ],
+            "same_root": true,
+            "delta_hf_Eh": 5.684341886080802e-14,
+            "delta_corrected_Eh": 8.520828487235121e-10,
+            "max_abs_delta_force_Eh_per_bohr": 1.201009200944847e-08
+          }
+        },
+        {
+          "line": 41,
+          "paths": {
+            "projected": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "initial_reference",
+              "cycles": 57,
+              "elapsed_s": 1.2010964415967464,
+              "converged": true,
+              "hf_Eh": -131.41945535622267,
+              "corrected_Eh": -132.31925138209226,
+              "s2": 0.7673596874790363,
+              "parent_min_sv": [
+                0.9705133915894991,
+                0.9704515954341735
+              ],
+              "archive_delta_hf_Eh": -3.979039320256561e-13,
+              "archive_delta_s2": 1.2415064531978715e-09,
+              "status": "accepted"
+            },
+            "raw": {
+              "parent": 2,
+              "engine": "pyscf",
+              "guess": "dm0",
+              "cycles": 41,
+              "elapsed_s": 1.0295521020889282,
+              "converged": true,
+              "hf_Eh": -131.41945535622187,
+              "corrected_Eh": -132.3192513820033,
+              "s2": 0.7673596883712879,
+              "parent_min_sv": [
+                0.9705133916006432,
+                0.9704515954302632
+              ],
+              "archive_delta_hf_Eh": 3.979039320256561e-13,
+              "archive_delta_s2": 2.1337580591307415e-09,
+              "status": "accepted"
+            }
+          },
+          "right_minus_left": {
+            "min_sv": [
+              0.9999999999999798,
+              0.9999999999999956
+            ],
+            "same_root": true,
+            "delta_hf_Eh": -7.958078640513122e-13,
+            "delta_corrected_Eh": -8.895995051716454e-11,
+            "max_abs_delta_force_Eh_per_bohr": 9.74996881841772e-10
+          }
+        }
+      ]
+    }
+  ],
+  "slurm": {
+    "job_id": "19128",
+    "host": "node1",
+    "visible_devices": "3"
+  },
+  "finished_utc": "2026-11-21T16:02:59.056687+00:00"
+}
