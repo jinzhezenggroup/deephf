@@ -127,7 +127,7 @@ class SpinDeePHFCalculator(_MolecularCalculator):
             auxbasis=auxbasis, gpu_sources=self._gpu_sources,
         )
         self.sequence = _ReferenceSequence(
-            family, build=build, scf_args=scf_args, seed_with_reference=True,
+            family, build=build, scf_args=scf_args,
             root_overlap_tolerance=root_overlap_tolerance,
         )
         self._evaluate = partial(

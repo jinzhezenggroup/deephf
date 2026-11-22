@@ -67,9 +67,7 @@ included density export, projection and CPU model evaluation.
 At 96 AOs, 16-thread PySCF gave the shortest elapsed time. At 192 AOs,
 GPU4PySCF was 1.34 times as fast as 16-thread PySCF. For one water, the
 first calls in the new processes took 0.049 s (single-thread PySCF),
-2.047 s (GPU4PySCF) and 1.734 s (GenerativeQC). Timings for analytic
-forces and geometry optimization with a previous density as the SCF guess
-require separate measurements.
+2.047 s (GPU4PySCF) and 1.734 s (GenerativeQC).
 
 ```bash
 for threads in 1 8 16; do
@@ -81,6 +79,24 @@ for engine in gpu4pyscf generativeqc; do
         python -m validation.hf_backends.benchmark "$engine" --threads 1
 done
 ```
+
+## Analytic forces and geometry optimization on n1
+
+With GPU4PySCF and CUDA Z-vector contractions on an RTX 5090, profiling
+nine continued DF-UHF acetonitrile cation frames gave a mean step time of
+951 ms. SCF and density export accounted for 52.5%, response-reference
+transport for 5.9%, the CPU HF gradient for 19.1%, Z-vector work for 2.7%,
+and the CPU DF Fock derivative for 17.3%. Moving the Z-vector contractions
+from CPU to CUDA reduced their stage from 301 to 26 ms.
+
+Three paired ASE BFGS runs used the same GPU4PySCF and CUDA response path.
+Reusing the previous AO density reduced the median time to the 0.020 eV/Å
+force threshold from 1.735 to 1.564 s for water and from 3.806 to 3.117 s
+for the formaldehyde cation. Cold and warm runs used the same number of
+optimizer steps and reached matching geometries and occupied subspaces.
+Both methanol paths reached the 60-step cap. The IE_benchmark project
+archive at `outputs/hf_force_warm_start_n1/README.md` records Slurm jobs
+19140 and 19142, conditions, individual runs and reproduction commands.
 
 ## Archived open-shell stress case
 

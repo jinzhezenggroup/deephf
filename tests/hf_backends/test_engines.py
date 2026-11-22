@@ -122,18 +122,31 @@ def test_cli_follows_selected_engine_across_frames(tmp_path, monkeypatch, engine
     np.save(system / "coord.npy", [[[0, 0, 0], [0, 0, 1.40]], [[0, 0, 0], [0, 0, 1.42]]])
 
     calls = []
+    references = []
+    projections = []
     solve = workflow.build_spin_reference
+    project = scf.addons.project_dm_nr2nr
 
     def record_solver(*args, **kwargs):
-        calls.append(kwargs["scf_backend"])
-        return solve(*args, **kwargs)
+        calls.append((kwargs["scf_backend"], kwargs["initial_reference"]))
+        reference = solve(*args, **kwargs)
+        references.append(reference)
+        return reference
+
+    def record_projection(source, density, target):
+        projections.append((source, target))
+        return project(source, density, target)
 
     monkeypatch.setattr(workflow, "build_spin_reference", record_solver)
+    monkeypatch.setattr(scf.addons, "project_dm_nr2nr", record_projection)
     [(directory, results)] = workflow.main(
         [str(system)], reference="rhf", basis="sto-3g", density_fit=True, auxbasis="weigend",
         scf_backend=engine, scf_device=device, energy_only=True, dump_dir="out",
     )
-    assert calls == [engine, engine]
+    assert calls == [(engine, None), (engine, references[0])]
+    assert projections == (
+        [] if engine == "generativeqc" else [(references[0].mol, references[1].mol)]
+    )
     expected = [
         scf.RHF(gto.M(atom=f"H 0 0 0; H 0 0 {distance}", basis="sto-3g", unit="Bohr",
                       verbose=0)).density_fit(auxbasis="weigend").kernel()
@@ -148,9 +161,8 @@ def test_cli_follows_selected_engine_across_frames(tmp_path, monkeypatch, engine
     first, second = records["frames"]
     assert second["parent_reference_state_fingerprint"] == first["reference_state_fingerprint"]
     assert second["minimum_occupied_overlap"] > 0.99
-    assert second["initial_guess_source"] == (
-        "previous_reference" if engine == "generativeqc" else "previous_density"
-    )
+    assert first["initial_guess_source"] == "independent"
+    assert second["initial_guess_source"] == "previous_reference"
 
 
 def test_g_shells_fail_explicitly_only_for_native_adjoint():

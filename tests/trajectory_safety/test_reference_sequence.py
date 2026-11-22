@@ -4,7 +4,7 @@ import json
 import numpy as np
 import pytest
 import torch
-from pyscf import gto
+from pyscf import gto, scf
 
 import deepks.deephf.workflow as workflow
 from deepks.data.force_schema import target_identity_fingerprint
@@ -14,7 +14,6 @@ from deepks.deephf.contracts import (
     occupied_subspace_overlaps,
 )
 from deepks.model.model import CorrNet
-from deepks.gpu import as_numpy
 
 
 PROJECTOR_BASIS = [[0, [0.8, 1.0]]]
@@ -134,54 +133,58 @@ def test_unrestricted_empty_spin_channel_has_neutral_overlap():
         ("uks", {"alpha", "beta"}),
     ],
 )
-def test_every_reference_family_reuses_previous_density_and_shared_overlap(
+def test_every_reference_family_projects_previous_reference_and_checks_overlap(
     family,
     channel_names,
     monkeypatch,
 ):
-    density_guesses = []
+    seeds = []
+    projections = []
     overlap_calls = []
     original_build_reference = workflow.build_reference
+    original_projection = scf.addons.project_dm_nr2nr
     original_overlap = workflow.occupied_subspace_overlaps
 
     def recording_build_reference(*args, **kwargs):
-        density_guesses.append(kwargs.get("dm0"))
+        seeds.append(kwargs["initial_reference"])
         return original_build_reference(*args, **kwargs)
+
+    def recording_projection(source, density, target):
+        projections.append((source, target))
+        return original_projection(source, density, target)
 
     def recording_overlap(*args, **kwargs):
         overlap_calls.append(True)
         return original_overlap(*args, **kwargs)
 
     monkeypatch.setattr(workflow, "build_reference", recording_build_reference)
+    monkeypatch.setattr(scf.addons, "project_dm_nr2nr", recording_projection)
     monkeypatch.setattr(workflow, "occupied_subspace_overlaps", recording_overlap)
     sequence = workflow._ReferenceSequence(family)
-    sequence.build(_h2(1.40))
-    sequence.build(_h2(1.41))
+    previous = sequence.build(_h2(1.40))
+    candidate = sequence.build(_h2(1.41))
 
-    assert density_guesses[0] is None
-    assert density_guesses[1] is not None
+    assert seeds == [None, previous]
+    assert projections == [(previous.mol, candidate.mol)]
     assert overlap_calls == [True]
     assert set(sequence.records[1]["occupied_subspace_overlaps"]) == channel_names
-    assert sequence.records[1]["initial_guess_source"] == "previous_density"
+    assert sequence.records[1]["initial_guess_source"] == "previous_reference"
     assert sequence.records[1]["parent_reference_state_fingerprint"] == (
         sequence.records[0]["reference_state_fingerprint"]
     )
 
 
 def test_rejected_candidate_does_not_advance_root_anchor(monkeypatch):
-    density_guesses = []
+    seeds = []
     original_build_reference = workflow.build_reference
 
     def recording_build_reference(*args, **kwargs):
-        density = kwargs.get("dm0")
-        density_guesses.append(
-            None if density is None else np.array(as_numpy(density), copy=True)
-        )
+        seeds.append(kwargs["initial_reference"])
         return original_build_reference(*args, **kwargs)
 
     monkeypatch.setattr(workflow, "build_reference", recording_build_reference)
     sequence = workflow._ReferenceSequence("rhf", root_overlap_tolerance=0.5)
-    sequence.build(_h2(1.40))
+    previous = sequence.build(_h2(1.40))
     first_fingerprint = sequence.records[0]["reference_state_fingerprint"]
     monkeypatch.setattr(
         workflow,
@@ -198,7 +201,7 @@ def test_rejected_candidate_does_not_advance_root_anchor(monkeypatch):
         lambda *args, **kwargs: (0.9,),
     )
     sequence.build(_h2(1.42))
-    np.testing.assert_array_equal(density_guesses[1], density_guesses[2])
+    assert seeds == [None, previous, previous]
     assert sequence.records[1]["parent_reference_state_fingerprint"] == first_fingerprint
 
 
@@ -254,7 +257,7 @@ def test_cli_persists_root_lineage_and_force_checkpoint_target(tmp_path, monkeyp
     assert provenance["auxbasis"] is None
     assert len(provenance["frames"]) == 2
     assert provenance["frames"][0]["initial_guess_source"] == "independent"
-    assert provenance["frames"][1]["initial_guess_source"] == "previous_density"
+    assert provenance["frames"][1]["initial_guess_source"] == "previous_reference"
     assert provenance["frames"][1]["parent_reference_state_fingerprint"] == (
         provenance["frames"][0]["reference_state_fingerprint"]
     )

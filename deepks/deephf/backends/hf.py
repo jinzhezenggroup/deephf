@@ -99,23 +99,31 @@ def _shells(molecule):
 
 
 def validate_seed(seed, target, family):
-    """Check the ordered nuclei and HF Hamiltonian without converting the SCF object."""
-    from ..gpu_method import gpu_reference_family
+    """Check source and target compatibility before building a molecular SCF guess."""
+    from ..gpu_method import DFT_FAMILIES, RESTRICTED_FAMILIES, gpu_reference_family
+    from ..pyscf_rhf_reference import _molecule_static_fingerprint
 
     seed_family = gpu_reference_family(seed) or _native_hf_family(seed)
-    if (seed_family not in ("rhf", "uhf") or hasattr(seed, "xc")
+    dft_seed = family in DFT_FAMILIES
+    if (seed_family is None or hasattr(seed, "xc") != dft_seed
             or not seed.converged or np.iscomplexobj(seed.mo_coeff)):
-        raise ValueError("a warm start requires a converged molecular HF reference")
+        method = "KS" if dft_seed else "HF"
+        raise ValueError(f"a warm start requires a converged molecular {method} reference")
     source, mol = seed.mol, target.mol
-    if (family != seed_family or (seed.mo_occ.ndim == 1) != (family == "rhf")
+    if (family != seed_family or (seed.mo_occ.ndim == 1) != (family in RESTRICTED_FAMILIES)
             or source.charge != mol.charge or source.spin != mol.spin or source.cart != mol.cart
-            or source.omega != mol.omega or source.has_ecp() or mol.has_ecp()
-            or source.pseudo or mol.pseudo or source.nucmod or mol.nucmod
+            or source.omega != mol.omega
             or source.elements != mol.elements or source.ao_labels() != mol.ao_labels()
             or not gto.same_basis_set(source, mol) or not np.isfinite(seed.e_tot)):
         raise ValueError("warm-start charge, spin, ordered nuclei or orbital basis mismatch")
+    if getattr(seed, "xc", None) != getattr(target, "xc", None):
+        raise ValueError("warm-start exchange-correlation functional mismatch")
+    if any(m.has_ecp() or m.pseudo or m.nucmod for m in (source, mol)) and (
+        _molecule_static_fingerprint(source) != _molecule_static_fingerprint(mol)
+    ):
+        raise ValueError("warm-start nuclear Hamiltonian mismatch")
     src_df, dst_df = getattr(seed, "with_df", None), getattr(target, "with_df", None)
-    if (src_df is None) != (dst_df is None) or getattr(seed, "only_dfj", False):
+    if (src_df is None) != (dst_df is None) or getattr(seed, "only_dfj", False) or getattr(target, "only_dfj", False):
         raise ValueError("warm-start density-fitting Hamiltonian mismatch")
     if dst_df is not None and not gto.same_basis_set(
         df.addons.make_auxmol(source, src_df.auxbasis), df.addons.make_auxmol(mol, dst_df.auxbasis)
@@ -124,7 +132,7 @@ def validate_seed(seed, target, family):
 
 
 def projected_seed(seed, mol):
-    """Project occupied AOs for a PySCF-family SCF guess at the new geometry."""
+    """Project the source density into the target AO basis for a PySCF-family guess."""
     if seed is None:
         return None
     density = as_numpy(seed.make_rdm1())

@@ -79,7 +79,7 @@ def test_public_workflow_reads_spin_checkpoint(tmp_path, monkeypatch, cutoff):
     assert Path(output) == tmp_path / "result" / "h2" / "energy_only"
     assert result["e_tot"].shape == (2,)
     records = json.loads((Path(output) / "deephf_provenance.json").read_text())["frames"]
-    assert records[1]["initial_guess_source"] == "previous_density"
+    assert records[1]["initial_guess_source"] == "previous_reference"
     assert records[1]["parent_reference_state_fingerprint"] == records[0]["reference_state_fingerprint"]
 
 

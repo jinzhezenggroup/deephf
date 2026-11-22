@@ -407,7 +407,7 @@ result = evaluate_molecule(
 
 The concrete method classes are `DeePHF`, `UHFDeePHF`, `RKSDeePHF`, and `UKSDeePHF`. Their direct response objects and scalar-adjoint objects expose immutable diagnostic partitions for scientific validation.
 
-For a multi-frame system, `deepks deephf` carries the preceding accepted density into the next SCF calculation and rejects a frame whose occupied-subspace overlap falls below `root_overlap_tolerance` (default `0.5`). Each successful system output contains `deephf_provenance.json` with the state lineage and spin-resolved overlap diagnostics; a force-trained checkpoint also contributes its target identity.
+For a multi-frame system, `deepks deephf` seeds each SCF calculation after the first with the preceding accepted reference. PySCF and GPU4PySCF project its density into the target geometry's AO basis, and GenerativeQC restores its native warm state using the source geometry. The CLI rejects a frame whose occupied-subspace overlap falls below `root_overlap_tolerance` (default `0.5`). Each successful system output contains `deephf_provenance.json` with the state lineage and spin-resolved overlap diagnostics. Continued frames record `initial_guess_source` as `previous_reference`. A force-trained checkpoint also contributes its target identity.
 
 ## Quick start: RHF energy-and-force training
 

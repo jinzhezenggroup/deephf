@@ -502,7 +502,6 @@ class _ReferenceSequence:
         dft_args=None,
         root_overlap_tolerance=0.5,
         build=None,
-        seed_with_reference=False,
         verbose=0,
     ):
         if type(family) is not str or family.lower() not in REFERENCE_FAMILIES:
@@ -515,11 +514,9 @@ class _ReferenceSequence:
             owner="trajectory",
         )
         self._build_reference = build_reference if build is None else build
-        self._seed_with_reference = seed_with_reference
         self.verbose = verbose
         self._previous_reference = None
         self._system_fingerprint = None
-        self._previous_density = None
         self._previous_occupations = None
         self._previous_occupied = None
         self._previous_fingerprint = None
@@ -535,19 +532,14 @@ class _ReferenceSequence:
             raise RootContinuityError(
                 "the molecular system or AO basis changed within one trajectory"
             )
-        # GenerativeQC validates both the previous density and its source geometry.
-        seed = (
-            {"initial_reference": self._previous_reference}
-            if self._seed_with_reference
-            else {"dm0": self._previous_density}
-        )
+        # The solver needs the source geometry to project or restore the seed.
         reference = self._build_reference(
             molecule,
             self.family,
             scf_args=self.scf_args,
             dft_args=self.dft_args,
             verbose=self.verbose,
-            **seed,
+            initial_reference=self._previous_reference,
         )
         occupations = as_numpy(reference.mo_occ)
         candidate_occupied = occupied_coefficients(
@@ -574,7 +566,7 @@ class _ReferenceSequence:
                 reference.mol,
                 candidate_occupied,
             )
-            initial_guess_source = "previous_reference" if self._seed_with_reference else "previous_density"
+            initial_guess_source = "previous_reference"
         minimum_overlap = float(min(overlaps))
         if minimum_overlap < self.root_overlap_tolerance:
             raise RootContinuityError(
@@ -593,16 +585,14 @@ class _ReferenceSequence:
             },
             "minimum_occupied_overlap": minimum_overlap,
         }
-        density = reference.make_rdm1(reference.mo_coeff, reference.mo_occ)
-        density_array = as_numpy(density)
-        if np.iscomplexobj(density_array) or not np.isfinite(density_array).all():
+        density = as_numpy(reference.make_rdm1(reference.mo_coeff, reference.mo_occ))
+        if np.iscomplexobj(density) or not np.isfinite(density).all():
             raise RootContinuityError(
                 f"the accepted {self.family.upper()} density is invalid"
             )
         result = reference if evaluate is None else evaluate(reference)
         self._previous_reference = reference
         self._system_fingerprint = system_fingerprint
-        self._previous_density = density.copy()
         self._previous_occupations = np.ascontiguousarray(occupations).copy()
         self._previous_occupied = tuple(value.copy() for value in candidate_occupied)
         self._previous_fingerprint = state_fingerprint
@@ -729,7 +719,6 @@ def main(
         sequence = _ReferenceSequence(
             reference,
             build=build,
-            seed_with_reference=scf_backend == "generativeqc",
             scf_args=scf_args,
             dft_args=dft_args,
             root_overlap_tolerance=root_overlap_tolerance,
